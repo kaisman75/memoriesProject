@@ -1,8 +1,12 @@
 import PostMessageSchema from "../ModelsSchema/PostMessage.js"
+
+
+
 export const GetPost= async(req,res)=>{
     try {
-        const responseMessage=await PostMessageSchema.find();
-        res.status(200).json(responseMessage);
+        res.send("hello")
+        // const responseMessage=await PostMessageSchema.find();
+        // res.status(200).json();
         
     } catch (error) {
         res.status(404).json({message:error.message}) ;   
