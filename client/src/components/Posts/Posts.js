@@ -1,16 +1,28 @@
-import React from 'react'
+import React from "react"
 import useStyles from"./styles"
-import Post from './post/post'
 import { useSelector } from 'react-redux'
+import Spinner from "react-spinkit"
+import Mediacard from "./post/post"
+
 const Posts = () => {
-const data =useSelector(state=>state.posts)
-  const classes=useStyles()
-  console.log(data)
+const data =useSelector(posts=>posts.posts.data)
+const classes=useStyles()
+console.log(data)
+
+
   return (
-    <div>
-      <Post />
-    </div>
+  
+    !data?<Spinner name="cube-grid" color="red"/>:
+     
+    data.map((e)=>{
+
+        const{creator,message,selectedFile,tags,title} = e;
+        return(
+          <Mediacard  name={creator} image={selectedFile} />
+        )
+     }
+    
+  )
   )
 }
-
 export default Posts

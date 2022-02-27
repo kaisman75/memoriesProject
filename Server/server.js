@@ -22,4 +22,4 @@ mongoose.connect(uri,{useNewUrlParser:true,useUnifiedTopology:true})
 
 app.use('/posts',postRoute)
 
-app.use('/create',postRoute)
+

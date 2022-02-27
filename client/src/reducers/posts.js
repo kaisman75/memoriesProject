@@ -1,9 +1,11 @@
 
 
  export  const posts=(posts=[] ,action)=>{
- switch (action.type){
+ switch(action.type){
     case "FETCH_ALL":
-        return action.payload
+        return action.payload;
+    case"CREATE":
+      return  [...posts,action.payload]   
  
     
      default:

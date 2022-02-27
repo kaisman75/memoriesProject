@@ -1,4 +1,6 @@
-import Axios from "axios"
+import axios from "axios"
+ const url="http://localhost:5000/posts";
 
-  export const fetchPosts = Axios.get("http://localhost:5000/posts");
+  export const fetchPosts = ()=>axios.get(url);
+  export const creatPost  =  (newPost)=>axios.post(url,newPost);
  
