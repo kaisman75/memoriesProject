@@ -1,15 +1,14 @@
 import * as React from 'react';
 import{Card,CardContent,CardMedia,Typography}  from '@material-ui/core';
-
+import FileBase from "react-file-base64"
 
 
  const  Mediacard = ({name,image}) =>{
   
   return (
-    <Card >
-      <CardMedia
+    <Card sx={{ Width: 200 }}>
+      <CardMedia className="cardImg"
         component="img"
-        width="50"
         height="200"
         src= {image.base64}
         alt={image.name}
