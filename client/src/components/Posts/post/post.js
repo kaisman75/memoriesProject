@@ -1,29 +1,33 @@
 import * as React from 'react';
-import{Card,CardContent,CardMedia,Typography}  from '@material-ui/core';
-import FileBase from "react-file-base64"
+import{Button,Card,CardMedia,Typography}  from '@material-ui/core';
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz"
+import useStyle from "./styles"
+import moment from "moment"
 
 
- const  Mediacard = ({name,image}) =>{
+ const Post = ({_id,name,image,title,createdAt}) =>{
+  const classes=useStyle()
+  
   
   return (
-    <Card sx={{ Width: 200 }}>
-      <CardMedia className="cardImg"
-        component="img"
-        height="200"
-        src= {image.base64}
-        alt={image.name}
+   
+   
+    <Card className={classes.Card}>
+      <CardMedia className={classes.media}
+      image ={image}
+      title={title}
       />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {name}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
+      <div className={classes.overlay}>
+        <Typography variant="h6">{name}</Typography>
+        <Typography variant="body2">{moment(createdAt).fromNow()}</Typography>
+      </div>
+      <div className={classes.overlay2}>
+        <Button style={{ color: 'white' }} size="small" onClick={() =>{}}><MoreHorizIcon fontSize="default" /></Button>
+      </div>
       
     </Card>
+    
+   
   );
 }
-export default Mediacard
+export default Post

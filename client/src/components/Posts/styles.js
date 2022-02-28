@@ -11,4 +11,12 @@ export default makeStyles((theme) => ({
   actionDiv: {
     textAlign: 'center',
   },
+  Spinner:{
+    width: "104px",
+    height: "440px",
+    margin:"auto",
+    display:"flex",
+    alignItems:"center",
+    justifyContent:"center",
+  }
 }));
