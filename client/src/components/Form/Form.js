@@ -25,7 +25,7 @@ const Form = () => {
             <Typography variant="h6">Creating Memorie</Typography>
             <TextField name="creator" style={{marginBottom:"10px"}} label="Creator" variant="outlined" value={postData.creator}  fullWidth onChange={e=> setPostData({...postData,creator:e.target.value})}/>
             <TextField name="title" style={{marginBottom:"10px"}} label="title" variant="outlined" value={postData.title}  fullWidth onChange={e=> setPostData({...postData,title:e.target.value})}/>
-            <TextField name="message" style={{marginBottom:"10px"}} label="message" variant="outlined" value={postData.message}  fullWidth onChange={e=> setPostData({...postData,message:e.target.value})}/>
+            <TextField  name="message" variant="outlined" label="Message" fullWidth multiline rows={4} value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })}/>
             <TextField name="tags" style={{marginBottom:"10px"}} label="tags" variant="outlined" value={postData.tags}  fullWidth onChange={e=> setPostData({...postData,tags:e.target.value})}/>
 
             <div className={classes.fileInput}><FileBase64 type="file" multiple={false} onDone={(base64)=>{setPostData({...postData,selectedFile:base64})}}/></div>
