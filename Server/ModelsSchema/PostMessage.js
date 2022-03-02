@@ -3,8 +3,8 @@ import mongoose from "mongoose";
 const Schema=mongoose.Schema({
     title:String,
     message:String,
-    creator:{type:String,required:true},
-    tags:[String],
+    creator:String,
+    tags: [String],
     selectedFile:Object,
     likeCount:{
         type:Number,

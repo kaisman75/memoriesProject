@@ -6,7 +6,7 @@ import Post from "./post/post"
 import{Grid} from '@material-ui/core'
 
 const Posts = () => {
-const data =useSelector(posts=>posts.posts.data);
+const data =useSelector(state=>state.posts.data );
 const classes=useStyles();
 console.log(data);
 
@@ -16,11 +16,10 @@ console.log(data);
     <Grid className={classes.container} container alignItems="stretch" spacing={3}>
       
      { data.map((e)=>{
-         const {_id,creator,message,selectedFile,tags,title,createdAt} = e;
        
         return(
-          <Grid key={_id} item xs={12} sm={6} md={6}> 
-          <Post _id={_id} name={creator} image={selectedFile.base64} title={title}createdAt={createdAt} />
+          <Grid key={e._id} item xs={12} sm={6} md={6}> 
+          <Post post={e} />
           </Grid>
          
           

@@ -1,5 +1,5 @@
 
-
+import 'dotenv/config'
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
@@ -13,7 +13,7 @@ app.use(bodyParser.json({limit:"30mb",extended:true}));
 app.use(bodyParser.urlencoded({limit:"30mb",extended:true}));
 app.use(cors());
 
-const uri="mongodb+srv://dbKais:111919manai@cluster0.z59ul.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const uri=process.env.DB_URL;
 const PORT=process.env.PORT||5000;
 mongoose.connect(uri,{useNewUrlParser:true,useUnifiedTopology:true})
   .then(()=>app.listen(PORT,()=>console.log(`server running on port :${PORT}`)))
