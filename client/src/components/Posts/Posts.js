@@ -5,7 +5,7 @@ import Spinner from "react-spinkit"
 import Post from "./post/post"
 import{Grid} from '@material-ui/core'
 
-const Posts = () => {
+const Posts = ({setCurrentID}) => {
 const data =useSelector(state=>state.posts.data );
 const classes=useStyles();
 console.log(data);
@@ -19,7 +19,7 @@ console.log(data);
        
         return(
           <Grid key={e._id} item xs={12} sm={6} md={6}> 
-          <Post post={e} />
+          <Post post={e}  setCurrentID={setCurrentID}/>
           </Grid>
          
           

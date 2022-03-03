@@ -1,24 +1,28 @@
-import React,{useState} from 'react'
-import {useDispatch}from 'react-redux'
+import React,{useState,useEffect} from 'react'
+import {useDispatch,useSelector}from 'react-redux'
 import FileBase64 from "react-file-base64"
 import makeStyles from"./Styles.js"
 import { TextField,Button,Typography,Paper } from '@material-ui/core'
-import { createPost } from '../../actions/posts.js'
+import { createPost, updatePost} from '../../actions/posts.js'
 
-const Form = () => {
-  const dispatch=useDispatch()
+const Form = ({currentID,setCurrentID}) => {
+  const dispatch=useDispatch();
+  const post=useSelector(state=>currentID?state.posts.find(p=>p._id==currentID):null)
   const [postData,setPostData]=useState({
-    creator:'', title:'', message:'', tags:'', selectedFile:''
+    creator:'', title:'', message:'', tags:'', selectedFile:'',likeCount:0
   })
     const classes = makeStyles()
     const handleSubmit=(e)=>{
       e.preventDefault()
+      currentID?dispatch(updatePost(currentID,postData)):
       dispatch(createPost(postData))
-      
+      setPostData({ creator:'', title:'', message:'', tags:'', seletedFile:''})
 
     } 
     const clear=()=>{ setPostData({ creator:'', title:'', message:'', tags:'', seletedFile:''})}
-    
+    useEffect(()=>{
+      if(post){setPostData(post)}
+    },[post])
   return (
    <Paper className={classes.paper}>
       <form className={`${classes.root} ${classes.form}`} autoComplete="off" noValidate >

@@ -24,3 +24,6 @@ export const CreatePost= async (req,res)=>{
         console.log(error.message)
     }
 }
+export const postUpdating= async(req,res)=>{
+    
+}

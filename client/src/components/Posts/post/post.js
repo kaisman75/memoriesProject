@@ -8,21 +8,27 @@ import moment from "moment"
 
 
 
- const Post = ({post}) =>{
+ const Post = ({post,setCurrentID}) =>{
   const classes=useStyle()
   const {_id,tags,title,selectedFile,creator,createdAt,message,likeCount} = post;
   console.log(tags)
+  
   return (
    
    
     <Card className={classes.card}>
     <CardMedia className={classes.media} image={selectedFile.base64 || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} title={post.title} />
     <div className={classes.overlay}>
+
+   
       <Typography variant="h6">{creator}</Typography>
+   
+
       <Typography variant="body2">{moment(createdAt).fromNow()}</Typography>
+
     </div>
     <div className={classes.overlay2}>
-      <Button style={{ color: 'white' }} size="small" onClick={() => {}}><MoreHorizIcon fontSize="default" /></Button>
+      <Button style={{ color: 'white' }} size="small" onClick={() => {setCurrentID(_id)}}><MoreHorizIcon fontSize="default" /></Button>
     </div>
     <div className={classes.details}>
       <Typography variant="body2" color="textSecondary" component="h2">{tags.map((tag) => `#${tag} `)}</Typography>
