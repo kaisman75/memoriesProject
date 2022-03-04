@@ -6,16 +6,16 @@ import Post from "./post/post"
 import{Grid} from '@material-ui/core'
 
 const Posts = ({setCurrentID}) => {
-const data =useSelector(state=>state.posts.data );
+const posts =useSelector(state=>state.posts.data);
 const classes=useStyles();
-console.log(data);
+console.log(posts);
 
 
   return (
-  !data? <Spinner name="cube-grid" color="red" className={classes.Spinner}/>:
+  !posts? <Spinner name="cube-grid" color="red" className={classes.Spinner}/>:
     <Grid className={classes.container} container alignItems="stretch" spacing={3}>
       
-     { data.map((e)=>{
+     {posts.map((e)=>{
        
         return(
           <Grid key={e._id} item xs={12} sm={6} md={6}> 

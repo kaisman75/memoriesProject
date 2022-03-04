@@ -6,23 +6,33 @@ import { TextField,Button,Typography,Paper } from '@material-ui/core'
 import { createPost, updatePost} from '../../actions/posts.js'
 
 const Form = ({currentID,setCurrentID}) => {
+
   const dispatch=useDispatch();
-  const post=useSelector(state=>currentID?state.posts.find(p=>p._id==currentID):null)
+  const post=useSelector((state)=>(currentID?state.posts.data.find((p)=>p._id===currentID):null))
   const [postData,setPostData]=useState({
     creator:'', title:'', message:'', tags:'', selectedFile:'',likeCount:0
   })
+   const clear=()=>{ setPostData({ creator:'', title:'', message:'', tags:'', seletedFile:''})}
     const classes = makeStyles()
-    const handleSubmit=(e)=>{
-      e.preventDefault()
-      currentID?dispatch(updatePost(currentID,postData)):
-      dispatch(createPost(postData))
-      setPostData({ creator:'', title:'', message:'', tags:'', seletedFile:''})
-
-    } 
-    const clear=()=>{ setPostData({ creator:'', title:'', message:'', tags:'', seletedFile:''})}
-    useEffect(()=>{
+   
+     useEffect(()=>{
       if(post){setPostData(post)}
     },[post])
+   
+   const handleSubmit=(e)=>{
+      e.preventDefault()
+      if (currentID === 0) {
+        dispatch(createPost(postData));
+        clear();
+      } else {
+       
+        dispatch(updatePost(currentID, postData));
+        clear();
+      }
+      
+    } 
+   
+  
   return (
    <Paper className={classes.paper}>
       <form className={`${classes.root} ${classes.form}`} autoComplete="off" noValidate >

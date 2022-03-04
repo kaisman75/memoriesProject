@@ -11,7 +11,7 @@ import moment from "moment"
  const Post = ({post,setCurrentID}) =>{
   const classes=useStyle()
   const {_id,tags,title,selectedFile,creator,createdAt,message,likeCount} = post;
-  console.log(tags)
+ 
   
   return (
    
