@@ -1,13 +1,24 @@
 import PostMessageSchema from "../ModelsSchema/PostMessage.js"
 import mongoose from 'mongoose';
 
-export const GetPost= async(req,res)=>{
+export const GetPosts= async(req,res)=>{
     try {
         const responseMessage=await PostMessageSchema.find();
         res.status(200).json(responseMessage);
         
     } catch (error) {
         res.status(404).json({message:error.message}) ;   
+    }
+}
+export const getPost = async (req, res) => { 
+    const { id } = req.params;
+
+    try {
+        const post = await PostMessageSchema.findById(id);
+        
+        res.status(200).json(post);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
     }
 }
 export const CreatePost= async (req,res)=>{
@@ -37,3 +48,25 @@ export const UpdatePost= async(req,res)=>{
     res.json(newUpdate);
     }
 
+    export const deletePost = async (req, res) => {
+        const { id } = req.params;
+    
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+    
+        await PostMessageSchema.findByIdAndRemove(id);
+    
+        res.json({ message: "Post deleted successfully." });
+    }
+    
+    export const likePost = async (req, res) => {
+        const { id } = req.params;
+    
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+        
+        const post = await PostMessageSchema.findById(id);
+    
+        const updatedPost = await PostMessageSchema.findByIdAndUpdate(id, { likeCount: post.likeCount + 1 }, { new: true });
+        
+        res.json(updatedPost);
+    }
+    

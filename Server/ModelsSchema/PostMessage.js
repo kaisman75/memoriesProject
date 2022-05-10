@@ -5,7 +5,7 @@ const Schema=mongoose.Schema({
     message:String,
     creator:String,
     tags: [String],
-    selectedFile:Object,
+    selectedFile:String,
     likeCount:{
         type:Number,
         default:0

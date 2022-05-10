@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 import {useDispatch} from "react-redux";
-import{AppBar,Container,Grid,Grow,Typography} from "@material-ui/core"
+import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
 import useStyles from "./Styles";
 import memories from "./images/memories.png"
 import Posts from "./components/Posts/Posts";
@@ -12,7 +12,7 @@ function App() {
   const classes=useStyles();
   useEffect(()=>{
     dispatch(getPosts())
-  },[dispatch])
+  },[currentID,dispatch])
 
   return (
 
@@ -25,7 +25,7 @@ function App() {
       <Grow in>
 
         <Container>
-          <Grid container justify="space-between" alignItems="stretch" spacing={3}>
+          <Grid container justifyContent="space-between" alignItems="stretch" spacing={3}>
             <Grid item xs={12} sm={7}>
               <Posts  setCurrentID={setCurrentID}/>
             </Grid>
