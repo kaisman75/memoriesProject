@@ -7,7 +7,7 @@ import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import DeleteIcon from '@material-ui/icons/Delete';
 import useStyle from "./styles"
 import moment from "moment"
-import { likePost, deletePost } from '../../../actions/posts';
+import { likePost, deletePost ,disLikePost} from '../../../actions/posts';
 
 
  const Post = ({post,setCurrentID}) =>{
@@ -42,7 +42,7 @@ import { likePost, deletePost } from '../../../actions/posts';
       <Typography variant="body2" color="textSecondary" component="p">{message}</Typography>
     </CardContent>
     <CardActions className={classes.cardActions}>
-      <Button size="small" color="primary" onClick={() => dispatch(likePost(_id))}> <ThumbUpAltIcon fontSize="small" /> </Button>  <span>{likeCount}</span> < Button size="small" color="primary"><ThumbDownIcon fontSize="small"/>   </Button>
+      <Button size="small" color="primary" onClick={() => dispatch(likePost(_id))}> <ThumbUpAltIcon fontSize="small" /> </Button>  <span>{likeCount}</span> < Button size="small" color="primary"  onClick={() => dispatch(disLikePost(_id))}><ThumbDownIcon fontSize="small"/>   </Button>
       <Button size="small" color="primary" onClick={() => dispatch(deletePost(_id))}><DeleteIcon fontSize="small" /> Delete</Button>
     </CardActions>
   </Card>

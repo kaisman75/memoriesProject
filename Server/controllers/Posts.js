@@ -68,5 +68,16 @@ export const UpdatePost= async(req,res)=>{
         const updatedPost = await PostMessageSchema.findByIdAndUpdate(id, { likeCount: post.likeCount + 1 }, { new: true });
         
         res.json(updatedPost);
+    };
+    export const disLikePost = async (req, res) => {
+        const { id } = req.params;
+    
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+        
+        const post = await PostMessageSchema.findById(id);
+    
+        const unpdatedPost = await PostMessageSchema.findByIdAndUpdate(id, { likeCount: post.likeCount - 1 }, { new: true });
+        
+        res.json(unpdatedPost);
     }
     
